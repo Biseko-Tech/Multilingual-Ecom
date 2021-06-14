@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,12 @@ Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
 Route::get('/user/password', [IndexController::class, 'UserPassword'])->name('user.password');
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+// All Admin Brand Routes
+Route::prefix('brand')->group(function () {
+    Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
+    Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+    Route::get('/{id}/edit', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+    Route::post('/{id}/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+    Route::get('/{id}/delete', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+});

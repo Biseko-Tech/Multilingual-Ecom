@@ -1,10 +1,15 @@
+@php
+    $prefix = Request::route()->getPrefix();
+    $route = Route::current()->getName();
+@endphp
+
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar">	
 		
         <div class="user-profile">
 			<div class="ulogo">
-				<a href="index.html">
+				<a href="{{ url('admin/dashboard') }}">
 				    <!-- logo for regular state and mobile devices -->
 					<div class="d-flex align-items-center justify-content-center">					 	
 						<img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
@@ -16,21 +21,25 @@
       
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
-            <li>
-                <a href="index.html"><i data-feather="pie-chart"></i>
+            <li class="{{ ($route == 'dashboard') ? 'active' : '' }}">
+                <a href="{{ url('admin/dashboard') }}"><i data-feather="pie-chart"></i>
                     <span>Dashboard</span>
                 </a>
             </li>  
             
-            <li class="treeview">
-                <a href="#"><i data-feather="message-circle"></i>
-                    <span>Application</span>
+            <li class="treeview {{ ($prefix == '/brand') ? 'active' : '' }}">
+                <a href=""><i data-feather="message-circle"></i>
+                    <span>Brands</span>
                     <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="chat.html"><i class="ti-more"></i>Chat</a></li>
-                    <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+                    <li class="{{ ($route == 'all.brand') ? 'active' : '' }}">
+                        <a href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brands</a>
+                    </li>
+                    <li>
+                        <a href="calendar.html"><i class="ti-more"></i>Calendar</a>
+                    </li>
                 </ul>
             </li> 
             
