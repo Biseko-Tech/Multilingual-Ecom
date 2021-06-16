@@ -7,30 +7,28 @@
         <div class="col-8">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Brand List</h3>
+                    <h3 class="box-title">Category List</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Brand En</th>
-                                    <th>Brand Sw</th>
-                                    <th>Image</th>
+                                    <th>Category Icon</th>
+                                    <th>Category En</th>
+                                    <th>Category Sw</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($brands as $item)
+                                @foreach ($category as $item)
                                 <tr>
-                                    <td>{{ $item->brand_name_en }}</td>
-                                    <td>{{ $item->brand_name_sw }}</td>
-                                    <td>
-                                        <img src="{{ asset('upload/brand-images/'.$item->brand_image) }}" alt="image" style="width: 70px; height: 40px;">
-                                    </td>
+                                    <td><span><i class="{{ $item->category_icon }}"></i></span></td>
+                                    <td>{{ $item->category_name_en }}</td>
+                                    <td>{{ $item->category_name_sw }}</td>
                                     <td width="22%">
-                                        <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a href="{{ route('brand.delete', $item->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil-square-o"></i></a>
+                                        <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -41,39 +39,39 @@
             </div><!-- /.box -->
         </div><!-- /.col -->
 
-        <!-- -------------------- Add Brand Page ---------------- -->
+        <!-- -------------------- Add Category Page ---------------- -->
         <div class="col-4">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add Brands</h3>
+                    <h3 class="box-title">Add Category</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
-                        <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('category.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <h5>Brand Name En<span class="text-danger">*</span></h5>
+                                <h5>Category Name En<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="brand_name_en" class="form-control">
-                                    @error('brand_name_en')
+                                    <input type="text" name="category_name_en" class="form-control">
+                                    @error('category_name_en')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h5>Brand Name Sw<span class="text-danger">*</span></h5>
+                                <h5>Category Name Sw<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="brand_name_sw" class="form-control">
-                                    @error('brand_name_sw')
+                                    <input type="text" name="category_name_sw" class="form-control">
+                                    @error('category_name_sw')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h5>Brand Image<span class="text-danger">*</span></h5>
+                                <h5>Category Icon<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="file" name="brand_image" class="form-control">
-                                    @error('brand_image')
+                                    <input type="text" name="category_icon" class="form-control" placeholder="Enter fontawesome icons">
+                                    @error('category_icon')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
